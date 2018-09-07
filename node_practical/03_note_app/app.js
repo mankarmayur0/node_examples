@@ -1,23 +1,23 @@
-console.log("App.js Starting!!");
+console.log("Starting App.js !!");
 
 const fs = require('fs');
-const _ = require("lodash");
+const _ = require('lodash');
+const yargs = require('yargs');
 
 const notes = require('./notes.js');
 
-var command = process.argv[2];
-
-console.log(command);
+var argsY = yargs.argv;
+var command = argsY._[0];
 
 if( command === 'list' ) {
-    console.log("Display list of notes.");
-} else if( command === 'add' ) {
-    console.log("Adding a Note");    
+    notes.getAll();
+} else if( command === 'add' ) {    
+    notes.addNote(argsY.title, argsY.message);
 } else if( command === 'read' ) {
-    console.log("Reading a note");    
-} else if( command === 'remove' ){
-    console.log("Remove a note");    
+    notes.getNote(argsY.title);   
+} else if( command === 'remove' ){   
+    notes.removeNote(argsY.title);
 } else {
-    console.log("command not recognized.");    
+    console.log("Entered command not recognized.");    
 }
 
