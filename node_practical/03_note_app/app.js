@@ -12,7 +12,7 @@ var command = argsY._[0];
 if( command === 'list' ) {
     notes.getAll();
 } else if( command === 'add' ) {    
-    notes.addNote(argsY.title, argsY.message);
+    notes.addNote(argsY.title, argsY.body);
 } else if( command === 'read' ) {
     notes.getNote(argsY.title);   
 } else if( command === 'remove' ){   
