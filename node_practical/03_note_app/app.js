@@ -15,19 +15,24 @@ if( command === 'list' ) {
     var note = notes.addNote(argsY.title, argsY.body);
     if(note) {
         console.log("Node is successfully added");
-        console.log("----");
-        console.log("title:", note.title);
-        console.log("body:", note.body);
+        notes.logNote(note);
     } else {
         console.log("Note failed to add");        
     }
 
 } else if( command === 'read' ) {
-    notes.getNote(argsY.title);   
+    var note = notes.getNote(argsY.title);   
+    if(note){
+        console.log("Note Found"); 
+        notes.logNote(note);       
+    } else {
+        console.log("Note not found.");
+    }
+
 } else if( command === 'remove' ){   
-    var removedTitle = notes.removeNote(argsY.title);
-    if(removedTitle) {
-        console.log("Note successfully removed with title:", removedTitle);        
+    var isNoteRemoved = notes.removeNote(argsY.title);
+    if(isNoteRemoved) {
+        console.log("Note successfully removed with title:", argsY.title);        
     } else {
         console.log(argsY.title + " titled note not available.");        
     }

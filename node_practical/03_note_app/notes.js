@@ -44,19 +44,25 @@ removeNote = (title) => {
     var notes = getNotes();
     var duplicateNotes = notes.filter((note) => note.title !== title);
     
-    if( duplicateNotes.length !== notes.length ) {
-        saveNotes(notes);
-        return title;
-    }
+    return duplicateNotes.length !== notes.length;
 }
 
 getNote = (title) => {
-    console.log("Read note ", title);    
+    var notes = getNotes();
+    var duplicateNotes = notes.filter((note) => note.title === title);
+    return duplicateNotes[0];
+}
+
+logNote = (note) => {
+    console.log("----");
+    console.log("title:", note.title);
+    console.log("body:", note.body);
 }
 
 module.exports =  {
     addNote,
     getAll,
     removeNote,
-    getNote
+    getNote,
+    logNote
 }
