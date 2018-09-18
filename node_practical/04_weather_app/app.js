@@ -1,10 +1,10 @@
 var request = require('request');
 
 request({
-    url: 'http://maps.googleapis.com/maps/api/geocode/json?address=1301%20lombart%20street%20philadephia',
+    url: 'https://ce954029-8387-43e8-95d0-a5a43ba6a65f.mock.pstmn.io/getmapdata',
     json: true
 }, (error, response, body) => {
-    console.log(JSON.stringify(body, undefined, 2));
-    // console.log(body);
-    
+    console.log(`Address: ${body.results[0].formatted_address}`);
+    console.log(`Lattitude: ${body.results[0].geometry.location.lat}`);
+    console.log(`Longitude: ${body.results[0].geometry.location.lng}`);
 });
