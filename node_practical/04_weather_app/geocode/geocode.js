@@ -9,12 +9,8 @@ var getGeoAddress = (link, callback) => {
             callback("Uable to connect to the server.");
         } else if(body.status === "OK"){
             callback(undefined, {'Address': body.results[0].formatted_address, 
-                                'Latitude': body.results[0].geometry.location.lat, 
+                                'latitude': body.results[0].geometry.location.lat, 
                                 'longitude': body.results[0].geometry.location.lng});
-            // console.log(`Address: ${body.results[0].formatted_address}`);
-            // console.log(`Lattitude: ${body.results[0].geometry.location.lat}`);
-            // console.log(`Longitude: ${body.results[0].geometry.location.lng}`);
-            // return body.results[0].formatted_address;
         }
     });
 }

@@ -1,21 +1,19 @@
-// var geocode = require('./geocode/geocode');
+var geocode = require('./geocode/geocode');
+var weather = require('./weather/weather');
 
-// geocode.getGeoAddress('getmapdata', (errorMessage, result) => {
-//     if(errorMessage)
-//         console.log(errorMessage);
-//     else
-//         console.log(JSON.stringify(result, undefined, 2));
-// });
-
-
-// weather key : d46c33c7a7c0bacdd6db4ee760742584
-
-var request = require('request');
-
-request({
-            url: "https://api.darksky.net/forecast/d46c33c7a7c0bacdd6db4ee760742584/37.8267,-122.4233",
-            json: true
-        }, 
-        (error, request, body) => {
-            console.log(`Temperature: ${body.currently.temperature}`);
+geocode.getGeoAddress('getmapdata', (errorMessage, result) => {
+    if(errorMessage)
+        console.log(errorMessage);
+    else {
+        console.log(result.Address);
+        weather.getWeather(result.latitude, result.longitude, (errorMessage, result) => {
+            if(errorMessage)
+                console.log(errorMessage);
+            else
+                console.log(`Current Temperature is ${result.temperature} but it feels lie ${result.apparentTemperature}`);
         });
+    }
+});
+
+
+
