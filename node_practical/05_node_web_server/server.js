@@ -1,13 +1,24 @@
 var express = require('express');
+var hbs = require('hbs');
 
 var app = express();
 
+app.set('view engine', 'hbs');
+app.use(express.static(__dirname + '/public'));
+
 app.get('/', (req, resp) => {
-    resp.send('<h1>Hello Express</h1>');
+    resp.render('home.hbs', {
+        welcomeMessage: 'Some Site',
+        pageName: "Some Site Page",
+        copyRightYear: new Date().getFullYear()
+    })
 });
 
 app.get('/about', (req, resp) => {
-    resp.send('<h1>About Page</h1>');
+    resp.render('about.hbs', {
+        pageName: "About Us Page",
+        copyRightYear: new Date().getFullYear()
+    });
 });
 
 app.get('/bad', (req, resp) => {
@@ -16,5 +27,7 @@ app.get('/bad', (req, resp) => {
     });
 });
 
-app.listen(3000);
+app.listen(3000, () => {
+    console.log('Server is up and running on 3000 port.')
+});
 
