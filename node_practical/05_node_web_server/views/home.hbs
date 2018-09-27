@@ -5,10 +5,10 @@
         <title>Some Site</title>
     </header>
     <body>
-        <h1>{{pageName}}</h1>
-        <p>Welcome to {{welcomeMessage}}!</p>
+        {{> header}}
+        <p>{{screamIt welcomeMessage}}</p>
     </body>
-    <footer>
-        Copyright @{{copyRightYear}}
-    </footer>
+   
+   {{> footer}}
+
 </html>
