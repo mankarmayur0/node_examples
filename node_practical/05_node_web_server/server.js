@@ -5,7 +5,6 @@ var fs = require('fs');
 var app = express();
 
 app.set('view engine', 'hbs');
-app.use(express.static(__dirname + '/public'));
 
 hbs.registerPartials(__dirname + '/views/partials');
 hbs.registerHelper('getCurrentDate', () => {
@@ -20,9 +19,10 @@ app.use((req, res, next) => {
     let now = new Date().toString();
     let log = `Time: ${now}, RequestType: ${req.method}, Path: ${req.path}`;
     console.log(log);
-    fs.appendFile('system.log', log + '\n', ((err) => {
-        console.log('Error in requesting server to load.');
-    }));
+    fs.appendFile('system.log', log + '\n', (err) => {
+        if( err )
+            console.log('Error in requesting server to load.');
+    });
     next();
 });
 
@@ -32,6 +32,8 @@ app.use((req, res, next) => {
         pageName: 'Maintainance Page'
     });
 });
+
+app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
     res.render('home.hbs', {
