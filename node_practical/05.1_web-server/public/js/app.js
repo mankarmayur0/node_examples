@@ -12,7 +12,7 @@ querySearch.addEventListener('submit', (e) => {
 
     messageOne.textContent = 'fetching forecast...';
     messageTwo.textContent = '';
-    fetch('http://localhost:3000/weather?address='+queryInput.value).then((response) => {
+    fetch('/weather?address='+queryInput.value).then((response) => {
         response.json().then((data) => {
             messageOne.textContent = '';
             if( data.error )
